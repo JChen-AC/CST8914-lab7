@@ -29,10 +29,10 @@
         <h1>Feedback form</h1>
     <form>
         <div class="control">
-          <label>Full name <span class="required">*</span></label><input id="name" name="name" type="text" />
+          <label>Full name <span class="required">*</span></label><input id="name" name="name" type="text" required/>
         </div>
         <div class="control">
-          <label>Biography</label><textarea id="biography" name="biography" type="text"></textarea>
+          <label>Biography</label><textarea id="biography" name="biography" type="text"  ></textarea>
           <span>Include examples on your skills in JavaScript.</span>
         </div>
         
@@ -92,7 +92,7 @@
               $referencedElement = $input;
             }
       // R.G. hint: fix next line ;)
-            $error = $('<a>' + message + '</a>');
+            $error = $('<a>' + message + '</a>'); // NEED TO HAVE THE THING CHANGE FOCUS TO THE ELEMENT THAT IS ERRORING 
             $error.click(function (e) {
               // If we rely on the link's href pointing to the input's ID, it doesn't trigger forms mode in screen readers
               $referencedElement.focus();
