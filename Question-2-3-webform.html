@@ -17,7 +17,7 @@
       width: auto;
     }
     
-    .error, .required {
+    .errors, .required {
       color: red;
     }
     
@@ -38,14 +38,14 @@
         
           <div>Gender</div>
           <div class="control">
-            <input id="gender_male" name="gender" type="radio" value="male" /><label>Male</label>
+            <input id="gender_male" name="gender" type="radio" value="male"/><label>Male</label>
           </div>
           <div class="control">
             <input id="gender_female" name="gender" type="radio" value="female" /><label>Female</label>
           </div>
         
         <div class="control">
-          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1" /><label>I accept the terms and conditions</label>
+          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1"/><label>I accept the terms and conditions</label>
         </div>
         <div class="control">
           <input name="validate" type="hidden" value="1" /><input type="submit" value="Register" />
@@ -93,13 +93,15 @@
             }
       // R.G. hint: fix next line ;)
             $error = $('<a>' + message + '</a>'); // NEED TO HAVE THE THING CHANGE FOCUS TO THE ELEMENT THAT IS ERRORING 
+            // they already take you to where you need to go
+              // they just need to look like links, are visible when focused, have tab accessibility, and screen reader stuff
             $error.click(function (e) {
               // If we rely on the link's href pointing to the input's ID, it doesn't trigger forms mode in screen readers
               $referencedElement.focus();
               return e.preventDefault();
             });
             $elementToDescribe.attr('aria-describedby', input + '_description');
-            $errorContainer.append('<li>').find('li:last').append($error);
+            $errorContainer.append('<li class="errors">').find('li:last').append($error);
       
             if ($(':not(form):focus').length === 0) {
               // See https://stackoverflow.com/questions/46134247/jquery-setting-focus-doesnt-work-in-ie11/
@@ -125,7 +127,7 @@
             validateInput('gender', 'Please tell us your gender!');
             validateInput('accept_agbs', 'You must accept our terms and conditions!');
       
-            if ($('.error').length === 0) {
+            if ($('.errors li').length === 0) {
               return alert('All inputs are valid.');
             }
           }
