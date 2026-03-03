@@ -127,6 +127,8 @@
             if ($(':not(form):focus').length === 0) {
               // See https://stackoverflow.com/questions/46134247/jquery-setting-focus-doesnt-work-in-ie11/
               // THIS IS WHERE FOCUS IS CHANGED TO THE ERROR AREA 
+              //$('fieldset.errors a').first().focus(); // focus on the first link of the error list
+              $referencedElement.focus() // focus on the first element that is errored 
             
             }
           } else {
