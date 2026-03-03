@@ -20,6 +20,16 @@
     .errors, .required {
       color: red;
     }
+
+    .error_link{
+      color:blueviolet;
+      background-color: orange;
+    }
+    .error_highlight{
+      border: 2px solid red;
+      background-color: #f3e9e8;
+      padding: 10px;
+    }
     
     fieldset ul {
       margin: 0;
@@ -35,15 +45,15 @@
           <label>Biography</label><textarea id="biography" name="biography" type="text"  ></textarea>
           <span>Include examples on your skills in JavaScript.</span>
         </div>
-        
-          <div>Gender</div>
+        <fieldset id="gender_group">
+          <legend> Gender</legend>
           <div class="control">
             <input id="gender_male" name="gender" type="radio" value="male"/><label>Male</label>
           </div>
           <div class="control">
             <input id="gender_female" name="gender" type="radio" value="female" /><label>Female</label>
           </div>
-        
+        </fieldset>
         <div class="control">
           <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1"/><label>I accept the terms and conditions</label>
         </div>
@@ -92,7 +102,18 @@
               $referencedElement = $input;
             }
       // R.G. hint: fix next line ;)
-            $error = $('<a>' + message + '</a>'); // NEED TO HAVE THE THING CHANGE FOCUS TO THE ELEMENT THAT IS ERRORING 
+            $error = $('<a tabindex=0 href="#'+ input +'">' + message + '</a>'); // NEED TO HAVE THE THING CHANGE FOCUS TO THE ELEMENT THAT IS ERRORING 
+            if(input === 'gender' ){
+              $('#gender_group').addClass('error_highlight');
+            }
+            else if(input === 'accept_agbs'){
+              $('#accept_agbs').closest('.control').addClass('error_highlight');
+
+            }
+            else{
+              $('#' + input).addClass('error_highlight'); 
+            }
+            
             // they already take you to where you need to go
               // they just need to look like links, are visible when focused, have tab accessibility, and screen reader stuff
             $error.click(function (e) {
@@ -101,13 +122,15 @@
               return e.preventDefault();
             });
             $elementToDescribe.attr('aria-describedby', input + '_description');
-            $errorContainer.append('<li class="errors">').find('li:last').append($error);
+            $errorContainer.append('<li class="errors error_link">').find('li:last').append($error);
       
             if ($(':not(form):focus').length === 0) {
               // See https://stackoverflow.com/questions/46134247/jquery-setting-focus-doesnt-work-in-ie11/
+              // THIS IS WHERE FOCUS IS CHANGED TO THE ERROR AREA 
             
             }
           } else {
+            $('#' + input).removeClass('error_highlight');
             if ($input.is(':checkbox')) {
               $input.attr('checked', true);
             }
