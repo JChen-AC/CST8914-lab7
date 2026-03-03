@@ -9,7 +9,7 @@
     
     label {
       display: inline-block;
-      width: 120px;
+      width: 160px;
       vertical-align: top;
     }
     
@@ -44,20 +44,20 @@
           <label>Full name <span class="required">*(required)</span></label><input id="name" name="name" type="text" required placeholder="Enter Full Name"/> <!-- Add required attribute-->
         </div>
         <div class="control">
-          <label>Biography</label><textarea id="biography" name="biography" type="text"  placeholder="Enter Biography"></textarea>
+          <label>Biography<span class="required">*(required)</span></label><textarea id="biography" name="biography" type="text"  placeholder="Enter Biography" required ></textarea>
           <span for="biography">Include examples on your skills in JavaScript.</span>
         </div>
         <fieldset id="gender_group"> <!-- Move gender into a field set -->
-          <legend> Gender</legend>
+          <legend> Gender <span class="required">*(required)</span> </legend>
           <div class="control">
-            <input id="gender_male" name="gender" type="radio" value="male"/><label for="gender_male">Male</label> <!-- Added for to gender label so screen reader can say the content-->
+            <input id="gender_male" name="gender" type="radio" value="male" required /><label for="gender_male"  >Male</label> <!-- Added for to gender label so screen reader can say the content-->
           </div>
           <div class="control">
             <input id="gender_female" name="gender" type="radio" value="female" /><label for="gender_female">Female</label> <!-- Added for to gender label so screen reader can say the content-->
           </div>
         </fieldset>
         <div class="control">
-          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1"/><label for="accept_agbs">I accept the terms and conditions</label> <!-- Added for to gender label so screen reader can say the content-->
+          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1" required /><label for="accept_agbs" >I accept the terms and conditions <span class="required">*(required)</span> </label> <!-- Added for to gender label so screen reader can say the content-->
         </div>
         <div class="control">
           <input name="validate" type="hidden" value="1" /><input type="submit" value="Register" />
